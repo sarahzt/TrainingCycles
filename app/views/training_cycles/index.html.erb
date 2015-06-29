@@ -1,0 +1,5 @@
+<h1>Your Training Cycles</h1>
+
+<% @cycles.each do |cycle| %>
+	<p><%= cycle.start_date %> <%= cycle.plan.name %></p>
+<% end %>

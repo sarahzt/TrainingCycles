@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  plan_id: 
+  start_date: 2015-06-03
+  end_date: 2015-06-03
+  race_date: 2015-06-03
+  experience_type_id: 
+  mileage_type_id: 
+
+two:
+  user_id: 
+  plan_id: 
+  start_date: 2015-06-03
+  end_date: 2015-06-03
+  race_date: 2015-06-03
+  experience_type_id: 
+  mileage_type_id: 

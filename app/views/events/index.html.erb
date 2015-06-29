@@ -1,0 +1,11 @@
+<h1>All Events</h1>
+
+<% 
+	@result.data.items.each do |event| 
+%>
+		<p><a href="events/<%= event.id %>/"><%= event.start.date%></a> - <%= event.summary %>:<br> <%= event.description %></p>
+<% 
+	end
+%>
+
+<%= debug @result.data.items %>

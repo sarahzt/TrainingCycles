@@ -1,0 +1,9 @@
+<h1>Welcome to Training Cycles!</h1>
+
+<p>You have these calendars:</p>
+
+<p><a href="/events"><%= @result.data.summary %>: <%= @result.data.description %></a></p>
+
+<p><%= button_to('Add Events to this Calendar','/events', method:'post') %></p>
+
+<%= debug @result.data %>

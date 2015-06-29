@@ -1,0 +1,15 @@
+<h1>Pick Your Training Plan</h1>
+
+<%= form_tag(search_plans_path, method: "get") do %>
+  <div class="form-group">
+  	<%= label_tag("I want to train for:") %>
+  	<%= select_tag(:plan_type_id, options_for_select(@plan_types),{class:"form-control"}) %>
+  </div>
+  <div class="form-group">
+  	<%= label_tag("Date of Target Race:") %>
+  	<%= date_field_tag(:race_date,Date.today,class:"form-control") %>
+  </div>
+  <div class="form-group">
+  	<%= submit_tag("Search",class:"btn btn-primary") %>
+  </div>
+<% end %>

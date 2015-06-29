@@ -1,0 +1,70 @@
+<h1><%= @plan.name %> Plan Workouts</h1>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Week</th>
+<% 		# output days of the week
+		@weekday_order.each{ |day| 
+%>
+			<th><%= Date::ABBR_DAYNAMES[day] %></th>
+<% 
+		}
+%>
+			<th>Weekly Mileage</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+<% 
+=begin
+	figure out what we need to do here in terms of formatting...
+	Off runs should just say Off
+	Speed runs need to give specific intervals and recoveries, etc.
+	How to better separate code from formatting?
+=end	
+	@workouts.each do |workout| 
+		# create a workout string to display in calendar
+		workoutStr = ""
+		unless workout.workout_type.nil?
+			# add up mileage
+			@weekly_mileage += workout.total_mileage
+			# format workout name
+			workoutStr = format_workout(workout.workout_type.name,workout.mileage,workout.description)
+			# add line break after colon so it fits better in calendar view
+			workoutStr.gsub!(/:/, ':<br>') 
+			workoutStr.gsub!('(', '<br>(') 
+		end
+%>
+
+<%		
+		# output week number column before first week day
+		# (this is the issue right here - how to order monday - sunday?)
+		if workout.week_day == 1 
+%>
+			<td class="col-md-1"><%= @week_count %></td>
+<%
+		end
+%>
+		<%# set width of column size depending on workout length %>
+		<% workout.week_day == 2 ? col_size = 2 : col_size = 1 %>
+
+			<td class="col-md-<%= col_size %>">
+				<a href="/plans/<%= @plan.id %>/workouts/<%= workout.id %>/"><%= raw workoutStr %></a>
+			</td>
+<% 
+		if workout.week_day == 0			
+%>
+			<td class="col-md-1"><%= @weekly_mileage %> miles</td>
+		</tr>
+		<tr>	
+<% 
+			# reset weekly mileage for next row
+			@weekly_mileage = 0
+			@week_count -= 1
+		end
+	end
+%>	
+		</tr>
+	</tbody>
+</table>

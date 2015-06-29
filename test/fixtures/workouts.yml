@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  plan_day: 1
+  week_day: 1
+  description: MyString
+  workout_type_id: 
+  mileage: 1
+
+two:
+  plan_day: 1
+  week_day: 1
+  description: MyString
+  workout_type_id: 
+  mileage: 1

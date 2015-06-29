@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Training Cycles</title>
+	<%= stylesheet_link_tag    'application', params[:controller], media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', params[:controller], 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
+</head>
+<body>
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="cover-container">
+          <div class="masthead clearfix">
+            <div class="inner">              
+              <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                  <div class="navbar-header">
+                    <h3 class="masthead-brand"><%= link_to("Training Cycles", root_path) %></h3>
+                  </div>                  
+                  <!-- <div id="navbar" class="navbar-collapse collapse">
+                  </div> --><!--/.navbar-collapse -->
+                </div>
+              </nav>
+            </div>
+            <div class="flash-msgs">
+              <%= render 'shared/flash_msgs' %>
+            </div>
+          </div>
+
+          <div class="inner cover">
+            <%= render 'new' %>
+          </div>
+
+          <div class="mastfoot">
+            <div class="inner">
+              <!-- <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

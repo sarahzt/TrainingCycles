@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Training Cycles</title>
+	<%= stylesheet_link_tag    'application', params[:controller], media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', params[:controller], 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
+</head>
+<body>
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="cover-container">
+          <div class="masthead clearfix">
+            <div class="inner">              
+              <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                  <div class="navbar-header">
+                    <h3 class="masthead-brand">Training Cycles</h3>
+                  </div>
+                  <div id="navbar" class="navbar-collapse collapse">
+                    <%= render 'new' %>
+                  </div><!--/.navbar-collapse -->
+                </div>
+              </nav>
+            </div>
+            <div class="flash-msgs">
+              <%= render 'shared/flash_msgs' %>
+            </div>
+          </div>
+
+          <div class="inner cover">
+            <h1 class="cover-heading">The Road to Your Next PR Begins Here.</h1>
+            <p class="lead">Create a personal training calendar for your next goal race.<br> Train hard. Record your workouts. PR big-time.</p>
+            <p class="lead">
+              <a href="/users/new" class="btn btn-lg btn-default">Register Now</a>
+            </p>
+          </div>
+
+          <div class="mastfoot">
+            <div class="inner">
+              <!-- <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

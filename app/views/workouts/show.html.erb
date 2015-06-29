@@ -1,0 +1,10 @@
+<h1>Workout</h1>
+
+<h4><%= format_workout(@workout.workout_type.name,@workout.mileage,@workout.description) %></h4>
+
+<p><%= @workout.workout_type.description %></p>
+
+<% if @workout.workout_type.name.include?("Speed") || @workout.workout_type.name.include?("Strength") || @workout.workout_type.name.include?("Tempo") %>
+	<p>Included in this workout is a 1.5 mile warm-up plus a 1.5 mile cool-down.</p>
+	<p>Total Mileage: <%= @workout.total_mileage %> miles</p>
+<% end %>

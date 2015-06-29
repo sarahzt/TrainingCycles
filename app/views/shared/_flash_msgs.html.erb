@@ -1,0 +1,7 @@
+<% # output any errors that occurred
+flash.each do |key, value| %>
+	<div class="alert alert-dismissable <%= flash_class(key) %> fade in widget-inner">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<%= raw(value) %>
+		</div>
+<% end %> 

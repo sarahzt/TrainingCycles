@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Training Cycles</title>
+	<%= stylesheet_link_tag    'application', params[:controller], media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', params[:controller], 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
+</head>
+<body>
+	<div class="container">
+		<nav class="navbar navbar-fixed-top navbar-inverse">
+	      <div class="container">
+	        <div class="navbar-header">
+	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	            <span class="sr-only">Toggle navigation</span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	          </button>
+	          <a class="navbar-brand" href="">Training Cycles</a>
+	        </div>
+	        <div id="navbar" class="collapse navbar-collapse">
+	          <ul class="nav navbar-nav">
+	          	<li><a href='/plans/new'>Find Your Plan</a></li>
+	          	<li><% if current_user.nil? %>
+					<a href='/log-in'>Log-in</a>
+				<% else %>
+					<a href='/log-out'>Log-out</a>
+				<% end %></li>
+
+	          </ul>
+	        </div><!-- /.nav-collapse -->
+	      </div><!-- /.container -->
+	    </nav><!-- /.navbar -->
+		<div class="row">
+			<div class="col-md-12">
+				<%= render 'shared/flash_msgs' %>
+				<%# for workouts, put in a motivational bg image here %>
+				<%= yield %>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

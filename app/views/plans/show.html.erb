@@ -1,0 +1,31 @@
+<h1>Pick Your Training Plan</h1>
+
+<% 
+	if !@plans.blank?
+		# output names of any training plans returned
+		@plans.each do |plan| 
+			# determine starting date of plan
+			first_date_of_plan = first_date_of_plan(@race_date,total_days_in_plan(plan.id))
+%>
+	<h4><%= plan.name %></h4>
+
+	<%= plan.description %></p>
+
+	<p>Based on your goal race on <%= date_abbrev(@race_date) %>, this training cycle will begin on <%= date_abbrev(first_date_of_plan) %>.</p>
+
+	<p>Click to <%= link_to "view all workouts", plan_workouts_path(plan.id) %> for this plan.</p>
+
+	<%= form_tag(training_cycles_path) do %>
+		<%= hidden_field_tag(:plan_id,plan.id) %>
+		<%= hidden_field_tag(:race_date,@race_date) %>
+		<%# hidden_field_tag(:start_date,@first_day) %>
+		<%= submit_tag("Choose this plan",class:"btn btn-primary") %>
+    <% end %>
+
+<% 		end
+	else  
+%>
+	<p>Sorry, no training plans matching your criteria were found. Please <%= link_to('try again', new_plan_path) %>.</p>
+<%
+	end
+%>

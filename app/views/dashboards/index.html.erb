@@ -1,0 +1,23 @@
+<%# Dashboards > Index %>
+
+<h1>Welcome, <%= @user %></h1>
+
+<% if @cycle.nil? %>
+	<%# (If user hasn't created a Training Cycle yet.) %>
+	<p>Pick your goal race and create your <%= link_to("Training Cycle", new_plan_path) %> calendar!</p>
+
+<% elsif @cycle.start_date.future? || @cycle.race_date.future? %>
+	<%# (If user created Training Cycle, but it hasn't started yet.) %>
+	<% if @cycle.start_date.future? %>
+		<h2>Training Begins <%= date_pretty(@cycle.start_date) %></h2> 
+		<p>Keep working on building up your base mileage and check back soon!</p>
+	<% else %>
+		<p>Click to add <%= link_to("today's workout", show_user_workout_today_path(date:Date.today)) %> to your profile.</p>
+	<% end %>
+
+	<iframe src="https://www.google.com/calendar/embed?showTitle=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=600&amp;wkst=2&amp;bgcolor=%23FFFFFF&amp;src=<%= calendar_id %>&amp;color=%23B1365F&amp;ctz=America%2FLos_Angeles" style=" border-width:0" width="975" height="600" frameborder="0" scrolling="no"></iframe>
+
+<% elsif @cycle.race_date.past? %>
+	<%# (If user has finished Training Cycle.) %>
+	<p>Good work on completing your last Training Cycle. Keep up the momentum! Once you've recovered, consider a new goal race&mdash;and beginning a new Training Cycle.</p>
+<% end %>

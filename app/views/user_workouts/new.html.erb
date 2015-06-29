@@ -1,0 +1,63 @@
+<%# User_Workouts > New %>
+
+<h2>Today's Workout</h2>
+
+<% if @workout_scheduled.empty? %>
+	<h4>No scheduled workout for today!</h4>
+<% else %>
+	<h4><%= @workout_scheduled %></h4>
+
+	<p><%= @workout_type_description %></p>
+
+	<p>Day # <%= @plan_day %> of plan</p>
+
+	<% if @workout_scheduled.include?("Speed") || @workout_scheduled.include?("Strength") || @workout_scheduled.include?("Tempo") %>
+		<p>Included in this workout is a 1.5 mile warm-up plus a 1.5 mile cool-down.</p>
+	<% end %>
+
+	<h2>How'd it go?</h2>
+
+	<p><em>The Workout, Description and Total Mileage fields are preset below based on today's scheduled workout. If you need to run a different workout for any reason -- for example, you are not recovered enough to complete a challenging Speed Workout, or perhaps you need to reschedule your Long Run due to weekend commitments -- reset the Workout, Description and Total Mileage fields below as needed to accurately reflect to today's run.</em></p>
+
+	<%= form_for @my_workout do |f| %>
+		<%= f.hidden_field :workout_date, value: @workout_date %>
+		<div class="form-group">
+			<%= f.label :workout_type_id, "Workout:" %>
+			<p>(If you performed a different workout than listed above, select the applicable workout option.)</p>
+			<%= f.select :workout_type_id, options_for_select(@workout_types, @workout_type_id),{},{class:"form-control"} %>
+		</div>
+		<div class="form-group">
+			<%= f.label :description, "Description:" %>
+			<p>(For Speed/Strength Workouts only: detail the number of intervals or repeats performed along with recoveries, such as "12 x 400 (400 recovery)")</p>
+			<%= f.text_field :description, class:"form-control", value: @workout_description %>
+		</div>
+		<div class="form-group">
+			<%= f.label :total_mileage, "Total Mileage:" %>
+			<p>(For Speed/Strength/Tempo Workouts: 1.5 mi warm-up and 1.5 mi cool-down, plus any recoveries, are included in the total mileage below.)</p>
+			<%= f.text_field :total_mileage, class:"form-control", value:@workout_total_mileage %>
+		</div>
+		<div class="form-group">
+			<%= f.label :rating, "Rate your workout:" %>
+			<p>(Rate how your workout went. Ratings are used to highlight rough patches or breakthroughs in training; don't get too hung up on the descriptors.)</p>
+			<%= f.select :rating, options_for_select(@ratings),{}, {class:"form-control"} %>
+		</div>	
+		<div class="form-group">
+			<%= f.label :feeling, "I Felt..." %>
+			<p>(Select a descriptor that most closely matches how you felt physically during this workout.)</p>
+			<%= f.select :feeling, options_for_select(@feelings),{},{class:"form-control"} %>
+		</div>	
+		<div class="form-group">
+			<%= f.label :weather, "Weather:" %>
+			<p>(Any mitigating factors, such as head wind, heat/humidity, rain, etc., that affected your workout.)</p>
+			<%= f.text_field :weather, class:"form-control" %>
+		</div>
+		<div class="form-group">
+			<%= f.label :description, "Details:" %>
+			<p>(Anything else you'd like to include, such as a summary of your workout, where you ran, what you eat before or during to fuel it, etc.)</p>
+			<%= f.text_area :description, class:"form-control" %>
+		</div>
+		<div class="form-group">
+			<%= f.submit "Save My Workout!", class:"btn btn-primary" %>
+		</div>
+	<% end %>
+<% end %>

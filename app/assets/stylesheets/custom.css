@@ -1,0 +1,17 @@
+/* styles for Bootstrap custom template - used on interior pages */
+
+* {
+	outline: 0px solid red;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  padding-top: 50px;
+}
+
+.container {
+	width:1000px;
+}
